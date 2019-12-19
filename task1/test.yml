@@ -1,0 +1,23 @@
+---
+# test playbook
+#
+ - name: testplaybook
+   hosts: wordpress
+   gather_facts: no
+   tasks:
+
+   - name: ordinary user without become
+     shell: |
+       echo "hostname->`hostname`"
+       echo "ordinary user without become->`whoami`"
+     register: moja_zmienna2
+   - debug: var=moja_zmienna2.stdout_lines
+
+   - name: ordinary user after switch to root
+     become: true
+     shell: |
+       echo "hostname->`hostname`"
+       echo "ordinary user after switch to root (become: true)->`whoami`"
+     register: moja_zmienna3
+   - debug: var=moja_zmienna3.stdout_lines
+

@@ -1,0 +1,23 @@
+---
+# test playbook
+#
+ - name: backup-files-and-database
+   hosts: www1
+   gather_facts: no
+   tasks:
+
+   - name: backup-files
+     shell: |
+       echo "hostname->`hostname`"
+       echo "ordinary user without become->`whoami`"
+     register: var-backup-files
+   - debug: var=moja_zmienna2.stdout_lines
+
+   - name: ordinary user after switch to root
+     become: true
+     shell: |
+       echo "hostname->`hostname`"
+       echo "ordinary user after switch to root (become: true)->`whoami`"
+     register: moja_zmienna3
+   - debug: var=moja_zmienna3.stdout_lines
+

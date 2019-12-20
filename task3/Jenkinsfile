@@ -2,26 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Environment'){
+        stage('task3 - terraforming infrastructure'){
             steps {
-                echo 'Building environment'
-                sh 'PATH=$PATH:/usr/local/bin'
+              dir("/var/lib/jenkins/poc_terra1/task3")
+              { 
+              	echo 'Building environment'
+	        sh 'PATH=$PATH:/usr/local/bin'
                 sh 'pwd'
-                sh 'terraform task3/init'
-                sh 'terraform task3/plan -out my_plan'
+              	sh 'terraform task3/init'
+	        sh 'terraform task3/plan -out my_plan'
                 sh 'terraform task3/apply my_plan'
-            }
-        }
-        stage('Sleep for 5 minutes'){
-            steps {
-                echo 'Waiting for 5 minutes before cleanup'
-                sleep(300)
-            }
-        }
-        stage('Destroy environment') {
-            steps {
-                echo 'Destroying environment'
-                sh 'terraform destroy --auto-approve'
+              }
             }
         }
     }

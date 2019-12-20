@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Environment'){
+            steps {
+                echo 'Building environment'
+                sh 'PATH=$PATH:/usr/local/bin'
+                sh 'terraform init'
+                sh 'terraform plan -out my_plan'
+                sh 'terraform apply my_plan'
+            }
+        }
+        stage('Sleep for 2 minutes'){
+            steps {
+                echo 'Waiting for 5 minutes before cleanup'
+                sleep(300)
+            }
+        }
+        stage('Destroy environment') {
+            steps {
+                echo 'Destroying environment'
+                sh 'terraform destroy --auto-approve'
+            }
+        }
+    }
+}

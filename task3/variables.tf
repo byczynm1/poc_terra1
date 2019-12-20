@@ -4,11 +4,11 @@ variable "AWS_REGION" {
 }
 
 variable "PATH_TO_PRIVATE_KEY" {
-  default = "byczynm1_mykey"
+  default = "/var/lib/jenkins/.ssh/id_rsa"
 }
 
 variable "PATH_TO_PUBLIC_KEY" {
-  default = "byczynm1_mykey.pub"
+  default = "/var/lib/jenkins/.ssh/id_rsa.pub"
 }
 
 variable "AMIS" {

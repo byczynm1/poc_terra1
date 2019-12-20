@@ -9,4 +9,4 @@
 import boto3
 s3 = boto3.resource("s3")
 data = open("iamtest.txt", "rb")
-s3.Bucket("b73-test1").put_object(Key="test.txt", Body=data)
+s3.Bucket("byczynm1-backup").put_object(Key="test.txt", Body=data)

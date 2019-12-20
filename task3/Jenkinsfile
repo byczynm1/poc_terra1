@@ -6,12 +6,13 @@ pipeline {
             steps {
                 echo 'Building environment'
                 sh 'PATH=$PATH:/usr/local/bin'
-                sh 'terraform init'
-                sh 'terraform plan -out my_plan'
-                sh 'terraform apply my_plan'
+                sh 'pwd'
+                sh 'terraform task3/init'
+                sh 'terraform task3/plan -out my_plan'
+                sh 'terraform task3/apply my_plan'
             }
         }
-        stage('Sleep for 2 minutes'){
+        stage('Sleep for 5 minutes'){
             steps {
                 echo 'Waiting for 5 minutes before cleanup'
                 sleep(300)
